@@ -1,11 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>中州未来大学 - 以问题为起点</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=IBM+Plex+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --ink:#102023;
+            --mist:#eef2f0;
+            --lake:#0f7f7a;
+            --sun:#f6b13f;
+            --stone:#39454a;
+            --paper:#f9f6f0;
+        }
+        *{box-sizing:border-box;}
+        body{
+            margin:0;
+            font-family:"IBM Plex Sans SC", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+            color:var(--ink);
+            background:
+                radial-gradient(1200px 600px at 80% -10%, #d8efe4 0%, transparent 60%),
+                radial-gradient(900px 500px at -10% 10%, #f6ecd8 0%, transparent 60%),
+                linear-gradient(180deg, #f7faf8 0%, #ffffff 40%, #f6f3ee 100%);
+        }
+        a{color:inherit;text-decoration:none;}
+        .wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+        header{
+            position:sticky;top:0;z-index:10;
+            backdrop-filter:saturate(120%) blur(10px);
+            background:rgba(249,246,240,0.7);
+            border-bottom:1px solid rgba(16,32,35,0.06);
+        }
+        .nav{
+            display:flex;align-items:center;justify-content:space-between;
+            height:72px;
+        }
+        .brand{
+            display:flex;align-items:center;gap:12px;font-weight:600;
+            letter-spacing:0.5px;
+        }
+        .seal{
+            width:38px;height:38px;border-radius:50%;
+            background:conic-gradient(from 120deg, #0f7f7a, #f6b13f, #0f7f7a);
+            display:grid;place-items:center;color:white;font-size:18px;
+            font-family:"ZCOOL XiaoWei", serif;
+        }
+        .nav-links{display:flex;gap:18px;font-size:14px;color:#3c4a4f;}
+        .cta{
+            padding:10px 18px;border-radius:999px;
+            background:var(--lake);color:white;font-weight:600;
+            box-shadow:0 8px 20px rgba(15,127,122,0.25);
+        }
+        .hero{
+            display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;
+            padding:72px 0 40px;
+        }
+        .hero h1{
+            font-family:"ZCOOL XiaoWei", serif;
+            font-size:56px;line-height:1.1;margin:0 0 16px;
+        }
+        .hero p{font-size:18px;color:#415155;line-height:1.7;}
+        .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
+        .ghost{
+            padding:10px 18px;border-radius:999px;border:1px solid #c6d4cf;
+            background:white;color:var(--stone);font-weight:600;
+        }
+        .hero-card{
+            background:var(--paper);
+            border-radius:22px;padding:22px 24px;
+            box-shadow:0 20px 50px rgba(16,32,35,0.08);
+        }
+        .hero-card h3{margin:0 0 12px;font-size:18px;}
+        .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px;}
+        .stat{
+            background:white;border-radius:16px;padding:14px 16px;
+            border:1px solid rgba(16,32,35,0.06);
+        }
+        .stat b{font-size:22px;}
+        .marquee{
+            display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;color:#5a6a70;font-size:13px;
+        }
+        .section{padding:54px 0;}
+        .section h2{font-size:28px;margin:0 0 14px;}
+        .section p.lead{color:#4c5b60;max-width:700px;line-height:1.7;margin-top:0;}
+        .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+        .card{
+            background:white;border-radius:18px;padding:18px;
+            border:1px solid rgba(16,32,35,0.08);
+            box-shadow:0 8px 20px rgba(16,32,35,0.05);
+            transition:transform .25s ease, box-shadow .25s ease;
+        }
+        .card:hover{transform:translateY(-4px);box-shadow:0 16px 28px rgba(16,32,35,0.08);}
+        .tag{
+            display:inline-block;padding:4px 10px;border-radius:999px;
+            background:#ecf6f2;color:var(--lake);font-size:12px;font-weight:600;
+        }
+        .split{
+            display:grid;grid-template-columns:1fr 1fr;gap:24px;
+        }
+        .news{
+            display:grid;gap:12px;
+        }
+        .news-item{
+            background:white;border-radius:14px;padding:14px 16px;border:1px solid rgba(16,32,35,0.06);
+        }
+        .campus{
+            background:linear-gradient(135deg, #0f7f7a 0%, #165b61 60%, #12373b 100%);
+            color:white;border-radius:22px;padding:22px;
+            display:grid;gap:12px;
+        }
+        .campus small{color:#d8f1ea;}
+        .timeline{
+            display:grid;gap:10px;
+        }
+        .timeline div{
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.12);
+            padding:10px 12px;border-radius:12px;
+        }
+        footer{
+            padding:40px 0;color:#5c6a6f;font-size:13px;
+            border-top:1px solid rgba(16,32,35,0.08);
+        }
+        .reveal{opacity:0;transform:translateY(12px);animation:rise .7s ease forwards;}
+        .delay-1{animation-delay:.1s;}
+        .delay-2{animation-delay:.2s;}
+        .delay-3{animation-delay:.3s;}
+        @keyframes rise{to{opacity:1;transform:translateY(0);}}
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr;}
+            .cards{grid-template-columns:1fr 1fr;}
+            .split{grid-template-columns:1fr;}
+        }
+        @media (max-width:640px){
+            .nav-links{display:none;}
+            .hero h1{font-size:40px;}
+            .cards{grid-template-columns:1fr;}
+            .stat-grid{grid-template-columns:1fr;}
+        }
+    </style>
 </head>
 <body>
-    demo
+    <header>
+        <div class="wrap nav">
+            <div class="brand">
+                <div class="seal">中</div>
+                <div>中州未来大学</div>
+            </div>
+            <nav class="nav-links">
+                <a href="#schools">学院</a>
+                <a href="#research">研究</a>
+                <a href="#campus">校园</a>
+                <a href="#admissions">招生</a>
+                <a href="#news">动态</a>
+            </nav>
+            <a class="cta" href="#admissions">预约访校</a>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="hero">
+            <div>
+                <h1 class="reveal">以问题为起点，面向未来的中国大学。</h1>
+                <p class="reveal delay-1">
+                    中州未来大学倡导“问题驱动+跨学科协作”的培养模式，聚焦人文、科技与产业交汇点。
+                    在一所城市森林中的校园里，我们把课堂搬到真实场景：从智能制造到公共治理，从文化遗产到
+                    绿色能源，让学生在实践中建立世界观与方法论。
+                </p>
+                <div class="hero-actions reveal delay-2">
+                    <a class="cta" href="#admissions">申请 2026 本科</a>
+                    <a class="ghost" href="#schools">查看学院与专业</a>
+                </div>
+                <div class="marquee reveal delay-3">
+                    <span>国家级一流专业建设点 18 个</span>
+                    <span>省部级重点实验室 12 个</span>
+                    <span>海外联合培养项目 46 个</span>
+                </div>
+            </div>
+            <div class="hero-card reveal delay-1">
+                <h3>2026 招生快讯</h3>
+                <div>综合评价报名开启：01.15 - 03.30</div>
+                <div class="stat-grid">
+                    <div class="stat"><div>本科招生</div><b>5200</b> 人</div>
+                    <div class="stat"><div>国际学生</div><b>680</b> 人</div>
+                    <div class="stat"><div>就业去向</div><b>97%</b></div>
+                    <div class="stat"><div>校友基金</div><b>3.2</b> 亿</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schools" class="section">
+            <h2>学院与跨学科集群</h2>
+            <p class="lead">设置“学院 + 研究院”双路径，学生可在二年级自主组合学习单元，形成个性化能力图谱。</p>
+            <div class="cards">
+                <div class="card">
+                    <span class="tag">未来工程</span>
+                    <h3>智能制造与无人系统学院</h3>
+                    <p>聚焦机器人、工业 AI 与复杂系统，设有“智能工厂实验场”。</p>
+                </div>
+                <div class="card">
+                    <span class="tag">人文科技</span>
+                    <h3>数字人文与城市文化学院</h3>
+                    <p>通过田野+计算手段保护文化遗产，建立开放式知识图谱。</p>
+                </div>
+                <div class="card">
+                    <span class="tag">公共议题</span>
+                    <h3>治理与社会创新学院</h3>
+                    <p>围绕城市更新、韧性社区与公共服务，强调实地协同项目。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section split">
+            <div>
+                <h2>研究领域</h2>
+                <p class="lead">以“平台+场景”驱动科研，校内建设 7 个大型共享平台，推进开放协作。</p>
+                <div class="cards">
+                    <div class="card">
+                        <h3>绿色能源与材料</h3>
+                        <p>从固态电池到碳捕集系统，形成完整中试链路。</p>
+                    </div>
+                    <div class="card">
+                        <h3>可信人工智能</h3>
+                        <p>将伦理审查与可解释性纳入课程与科研标准流程。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="campus" id="campus">
+                <h2>校园生活</h2>
+                <small>生活区与教学区步行 8 分钟可达</small>
+                <div class="timeline">
+                    <div>晨间：城市森林跑道开放 06:00</div>
+                    <div>午间：全球厨房 12 个档口轮换菜单</div>
+                    <div>夜间：创新工坊开放至 23:00</div>
+                </div>
+                <div>150+ 学生社团 | 5 个音乐与表演空间 | 校园自有播客</div>
+            </div>
+        </section>
+
+        <section id="news" class="section split">
+            <div>
+                <h2>校园动态</h2>
+                <div class="news">
+                    <div class="news-item">中州未来大学与三家头部企业共建“AI 可信评测中心”。</div>
+                    <div class="news-item">“未来乡村计划”第三期完成 12 个乡镇实地共创。</div>
+                    <div class="news-item">学生团队斩获全国大学生工业设计竞赛特等奖。</div>
+                </div>
+            </div>
+            <div id="admissions">
+                <h2>招生与访校</h2>
+                <p class="lead">欢迎预约开放日，了解综合评价、强基计划与国际联合培养路线。</p>
+                <div class="cards">
+                    <div class="card">
+                        <h3>开放日</h3>
+                        <p>每周六上午 09:30，含校园导览与教授面对面。</p>
+                    </div>
+                    <div class="card">
+                        <h3>线上说明会</h3>
+                        <p>每周三 19:30，提供录播回看与答疑。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div>中州未来大学 · 河南省郑州市未来大道 88 号</div>
+            <div>本科招生办公室：0371-8888-1234 · admissions@zzfu.edu.cn</div>
+            <div>© 2026 Zhongzhou Future University. All Rights Reserved.</div>
+        </div>
+    </footer>
 </body>
 </html>
